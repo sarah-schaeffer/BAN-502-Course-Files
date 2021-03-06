@@ -1,0 +1,66 @@
+---
+title: "Homes Sales Above Median - Ames, IA"
+author: Jessenia McCrary and Sarah Schaeffer
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    runtime: shiny
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(shiny)
+```
+
+```{r}
+ames_student = read_csv("ames_student.csv")
+```
+
+Row 
+-----------------------------------------------------------------------
+
+### Chart 1 - Above Ground Living Area Square Footage
+
+```{r}
+ggplot(ames_student) +
+ aes(x = Above_Median, y = Gr_Liv_Area) +
+ geom_boxplot(fill = "#0c4c8a") +
+ theme_minimal() +
+  ggtitle("Above Ground Living Area Square Footage")
+```
+
+### Chart 2 - Number of Full Bathrooms
+
+```{r}
+ggplot(ames_student) +
+ aes(x = Above_Median, y = Full_Bath) +
+ geom_boxplot(fill = "#0c4c8a") +
+ theme_minimal() +
+  ggtitle("Number of Full Bathrooms")
+```
+
+Row
+-----------------------------------------------------------------------
+### Chart 3 - Size of Garage in Car Capacity
+
+```{r}
+ggplot(ames_student) +
+ aes(x = Above_Median, y = Garage_Cars) +
+ geom_boxplot(fill = "#0c4c8a") +
+ theme_minimal() +
+  ggtitle("Size of Garage in Car Capacity")
+```
+
+-----------------------------------------------------------------------
+### Chart 4 - Type of Foundation
+
+```{r}
+ggplot(ames_student) +
+ aes(x = Foundation, fill = Above_Median) +
+ geom_bar(position = "fill") +
+ scale_fill_hue() +
+ theme_minimal() +
+  ggtitle("Type of Foundation")
+```
+
